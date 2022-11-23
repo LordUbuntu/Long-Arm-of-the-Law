@@ -252,6 +252,7 @@ GameObject:
   - component: {fileID: 1924399585}
   - component: {fileID: 1924399584}
   - component: {fileID: 1924399586}
+  - component: {fileID: 1924399587}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -338,7 +339,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f5b3d9e25c0c9349b8dba82b7f751d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  personSpeed: 5
-  rotationSpeed: 10
+  maxSpeed: 5
+  rotationSpeed: 5
+  acceleration: 10
+  sqrSlowDistance: 3
+  sqrStoppingDistance: 0.5
+  sideMovementReduction: 1.5
   viewportWidth: 15
   viewportHeight: 7
+--- !u!50 &1924399587
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1924399583}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
