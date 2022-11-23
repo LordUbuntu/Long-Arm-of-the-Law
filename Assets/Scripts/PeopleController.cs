@@ -29,6 +29,8 @@ public class PeopleController : MonoBehaviour
 
     Vector3 targetPosition;
 
+    Color color;
+
     Rigidbody2D rb;
 
     // Start is called before the first frame update
@@ -36,6 +38,10 @@ public class PeopleController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         ChooseNewTarget();
+
+        // This should be moved somewhere else later
+        color = Random.ColorHSV(0, 1, 0, 1, 0.5f, 1, 1, 1);
+        GetComponent<SpriteRenderer>().color = color;
     }
 
     // Update is called once per frame
@@ -110,7 +116,7 @@ public class PeopleController : MonoBehaviour
     }
 
     private void OnDrawGizmos() {
-        Gizmos.color = Color.green;
+        Gizmos.color = color;
         Gizmos.DrawSphere(targetPosition, 0.5f);
     }
 
