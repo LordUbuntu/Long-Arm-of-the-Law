@@ -5,6 +5,7 @@ using UnityEngine;
 public class PeopleController : MonoBehaviour
 {
     public float personSpeed = 1;
+    public float rotationSpeed = 30;
 
     public float viewportWidth = 5;
     public float viewportHeight = 3;
@@ -32,10 +33,22 @@ public class PeopleController : MonoBehaviour
 
         if (sqrDistance < 0.1f) {
             ChooseNewTarget();
+            toTarget = targetPosition - transform.position;
         }
 
+        float dot = Vector3.Dot(transform.up, toTarget.normalized);
+        float angle = Vector2.SignedAngle(transform.up, toTarget.normalized);
+
+        transform.Rotate(Vector3.forward, angle * rotationSpeed * Time.deltaTime);
+
         // Move towards target
-        transform.position = Vector3.MoveTowards(
-            transform.position, targetPosition, personSpeed * Time.deltaTime);
+        float maxMovement = Mathf.Max(personSpeed * dot * Time.deltaTime, 0);
+        float movement = Mathf.Min(maxMovement, toTarget.magnitude);
+        transform.position += transform.up * movement;
+    }
+
+    private void OnDrawGizmos() {
+        Gizmos.color = Color.green;
+        Gizmos.DrawSphere(targetPosition, 0.3f);
     }
 }
